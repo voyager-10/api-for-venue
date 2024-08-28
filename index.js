@@ -1,6 +1,10 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const port = 3000;
+
+
+app.use(cors());
 
 // Sample data
 const data = [
@@ -43,7 +47,7 @@ const data = [
 ];
 
 // API endpoint to serve the data
-app.get('/api/data', (req, res) => {
+app.get('/', (req, res) => {
     res.json(data);
 });
 
@@ -51,3 +55,4 @@ app.get('/api/data', (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });
+

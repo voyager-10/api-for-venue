@@ -1,17 +1,14 @@
 const express = require('express');
-const fs = require('fs').promises;
+const path = require('path')
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Serve static files from the "public" directory
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Endpoint to get events
-app.get('/', async (req, res) => {
-    try {
-        const data = await fs.readFile('./events.json', 'utf8');
-        const events = JSON.parse(data);
-        res.json(events);
-    } catch (error) {
-        res.status(500).json({ error: 'Failed to read events data' });
-    }
+app.get('/events', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'events.json'));
 });
 
 // Start the server

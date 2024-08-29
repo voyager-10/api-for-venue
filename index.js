@@ -4,11 +4,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Serve static files from the "public" directory
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname)));
 
 // Endpoint to get events
 app.get('/events', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'events.json'));
+    res.sendFile(path.join(__dirname, 'events.json'));
 });
 
 // Start the server
